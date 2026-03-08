@@ -2,65 +2,98 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: #213547; /* Light mode default text color */
+  background-color: #ffffff; /* Light mode default background */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87); /* Dark mode default text color */
+    background-color: #242424; /* Dark mode default background */
+  }
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: flex-start; /* Align to top */
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  padding: 20px; /* Add some padding around the content */
+  box-sizing: border-box;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  max-width: 900px; /* Limit overall width */
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
-.card {
-  padding: 2em;
+.game-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.read-the-docs {
-  color: #888;
+.bingo-card {
+  display: grid;
+  grid-template-columns: repeat(5, 60px);
+  grid-template-rows: repeat(5, 60px);
+  gap: 5px;
+  border: 2px solid #333;
+  padding: 5px;
+  background-color: #eee;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bingo-card .cell {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: default;
+  user-select: none;
+}
+
+.bingo-card .cell.is-open {
+  background-color: #ffdddd; /* Light red for opened cells */
+  color: #cc0000;
+}
+
+.bingo-card .cell.is-free {
+  background-color: #ccffcc; /* Light green for FREE cell */
+  color: #008000;
+}
+
+.bingo-card .cell.is-bingo-line {
+  background-color: #ffffcc; /* Light yellow for bingo line */
+  border-color: #ffcc00;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 150px;
 }
 
 button {
@@ -70,10 +103,17 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f9f9f9; /* Light mode button background */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s;
 }
+
+@media (prefers-color-scheme: dark) {
+  button {
+    background-color: #1a1a1a; /* Dark mode button background */
+  }
+}
+
 button:hover {
   border-color: #646cff;
 }
@@ -82,15 +122,68 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.status {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: left;
+  min-width: 180px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .status {
+    background-color: #333;
   }
-  a:hover {
-    color: #747bff;
+}
+
+.status p {
+  margin: 5px 0;
+}
+
+.status span {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.drawn-balls {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: left;
+  flex-grow: 1; /* Take remaining space */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .drawn-balls {
+    background-color: #333;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+.drawn-balls h2 {
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+#drawn-balls-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-height: 200px; /* Limit height and add scroll if needed */
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+#drawn-balls-history span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: bold;
 }
