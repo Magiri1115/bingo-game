@@ -5,7 +5,6 @@ import { renderCard, renderStatus, renderFinished } from './modules/renderer';
 document.addEventListener('DOMContentLoaded', () => {
   let gameState = initGameState();
 
-  const bingoCardElement = document.getElementById('bingo-card') as HTMLDivElement;
   const drawBallButton = document.getElementById('draw-ball-button') as HTMLButtonElement;
   const resetButton = document.getElementById('reset-button') as HTMLButtonElement;
   const lastDrawnElement = document.getElementById('last-drawn') as HTMLSpanElement;

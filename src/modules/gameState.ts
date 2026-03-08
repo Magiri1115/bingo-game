@@ -1,4 +1,4 @@
-import type { Card, GameState, CheckResult } from '../types';
+import type { Card, GameState } from '../types';
 import { generateCard } from './cardGenerator';
 import { createBalls } from './ballManager';
 import { checkCard } from './bingoChecker';
