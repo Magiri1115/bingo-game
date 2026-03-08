@@ -3,8 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  color: #213547; /* Light mode default text color */
-  background-color: #ffffff; /* Light mode default background */
+  color: #213547;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -13,8 +13,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: rgba(255, 255, 255, 0.87); /* Dark mode default text color */
-    background-color: #242424; /* Dark mode default background */
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
   }
 }
 
@@ -22,16 +22,16 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align to top */
+  align-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  padding: 20px; /* Add some padding around the content */
+  padding: 20px;
   box-sizing: border-box;
 }
 
 #app {
   text-align: center;
-  max-width: 900px; /* Limit overall width */
+  max-width: 900px;
   width: 100%;
 }
 
@@ -43,7 +43,7 @@ h1 {
 
 .game-container {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   margin-top: 20px;
@@ -75,17 +75,17 @@ h1 {
 }
 
 .bingo-card .cell.is-open {
-  background-color: #ffdddd; /* Light red for opened cells */
+  background-color: #ffdddd;
   color: #cc0000;
 }
 
 .bingo-card .cell.is-free {
-  background-color: #ccffcc; /* Light green for FREE cell */
+  background-color: #ccffcc;
   color: #008000;
 }
 
 .bingo-card .cell.is-bingo-line {
-  background-color: #ffffcc; /* Light yellow for bingo line */
+  background-color: #ffffcc;
   border-color: #ffcc00;
 }
 
@@ -103,14 +103,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #f9f9f9; /* Light mode button background */
+  background-color: #f9f9f9;
   cursor: pointer;
   transition: border-color 0.25s, background-color 0.25s;
 }
 
 @media (prefers-color-scheme: dark) {
   button {
-    background-color: #1a1a1a; /* Dark mode button background */
+    background-color: #1a1a1a;
   }
 }
 
@@ -151,7 +151,7 @@ button:focus-visible {
   padding: 15px;
   border-radius: 8px;
   text-align: left;
-  flex-grow: 1; /* Take remaining space */
+  flex-grow: 1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -170,7 +170,7 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  max-height: 200px; /* Limit height and add scroll if needed */
+  max-height: 200px;
   overflow-y: auto;
   padding-right: 5px;
 }
