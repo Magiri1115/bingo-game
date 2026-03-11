@@ -1,4 +1,5 @@
 :root {
+  font-size: 62.5%;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -25,8 +26,9 @@ body {
   align-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  padding: 20px;
+  padding: 2rem;
   box-sizing: border-box;
+  font-size: 1.6rem;
 }
 
 #app {
@@ -38,24 +40,29 @@ body {
 h1 {
   font-size: 2.5em;
   line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+}
+
+#game-message {
+  width: 100%;
+  color: #cc0000;
 }
 
 .game-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2rem;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 .bingo-card {
   display: grid;
   grid-template-columns: repeat(5, 60px);
   grid-template-rows: repeat(5, 60px);
-  gap: 5px;
+  gap: 0.5rem;
   border: 2px solid #333;
-  padding: 5px;
+  padding: 0.5rem;
   background-color: #eee;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -92,8 +99,15 @@ h1 {
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
   min-width: 150px;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+  gap: 3.2rem;
 }
 
 button {
@@ -124,7 +138,7 @@ button:focus-visible {
 
 .status {
   background-color: #f0f0f0;
-  padding: 15px;
+  padding: 1.5rem;
   border-radius: 8px;
   text-align: left;
   min-width: 180px;
@@ -138,7 +152,7 @@ button:focus-visible {
 }
 
 .status p {
-  margin: 5px 0;
+  margin: 0.5rem 0;
 }
 
 .status span {
@@ -148,10 +162,10 @@ button:focus-visible {
 
 .drawn-balls {
   background-color: #f0f0f0;
-  padding: 15px;
+  padding: 1.5rem;
   border-radius: 8px;
   text-align: left;
-  flex-grow: 1;
+  width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -169,10 +183,10 @@ button:focus-visible {
 #drawn-balls-history {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 0.5rem;
   max-height: 200px;
   overflow-y: auto;
-  padding-right: 5px;
+  padding-right: 0.5rem;
 }
 
 #drawn-balls-history span {
