@@ -1,6 +1,6 @@
 import './style.css'
 import { initGameState, applyDraw } from './modules/gameState';
-import { renderCard, renderStatus, renderFinished } from './modules/renderer';
+import { renderCard, renderStatus, renderFinished, clearFinished } from './modules/renderer';
 
 document.addEventListener('DOMContentLoaded', () => {
   let gameState = initGameState();
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const drawnBallsHistoryElement = document.getElementById('drawn-balls-history') as HTMLDivElement;
 
   function updateUI() {
+    clearFinished();
     renderCard(gameState.card, gameState.checkResult.bingoLines);
     renderStatus(gameState);
 

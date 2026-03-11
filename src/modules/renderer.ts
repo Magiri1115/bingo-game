@@ -69,14 +69,26 @@ export function renderStatus(state: GameState): void {
 }
 
 /**
+ * ゲーム終了メッセージをクリアする
+ */
+export function clearFinished(): void {
+  const gameMessageElement = document.getElementById('game-message') as HTMLDivElement;
+  if (gameMessageElement) {
+    gameMessageElement.innerHTML = '';
+  }
+}
+
+/**
  * ゲーム終了時のメッセージを表示する
  */
 export function renderFinished(): void {
-  // 必要に応じてゲーム終了メッセージをDOMに追加
-  console.log('Game Finished!');
+  const gameMessageElement = document.getElementById('game-message') as HTMLDivElement;
+  if (!gameMessageElement) return;
+
+  gameMessageElement.innerHTML = ''; // 一度クリア
   const messageElement = document.createElement('p');
   messageElement.textContent = 'すべてのボールが出ました！ゲーム終了！';
   messageElement.style.fontWeight = 'bold';
-  messageElement.style.marginTop = '20px';
-  bingoCardElement.insertAdjacentElement('afterend', messageElement);
+  messageElement.style.marginTop = '2rem';
+  gameMessageElement.appendChild(messageElement);
 }
