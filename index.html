@@ -3,11 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>bingo-game</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h1>ビンゴゲーム</h1>
+      <div class="game-container">
+        <div class="bingo-card" id="bingo-card">
+          <!-- ビンゴカードのセルはJavaScriptで生成 -->
+        </div>
+        <div class="controls">
+          <button id="draw-ball-button">次の球を引く</button>
+          <button id="reset-button">リセット</button>
+        </div>
+        <div class="status">
+          <p>最新のボール: <span id="last-drawn">--</span></p>
+          <p>リーチ数: <span id="reach-count">0</span></p>
+          <p>ビンゴ数: <span id="bingo-count">0</span></p>
+        </div>
+        <div class="drawn-balls">
+          <h2>出たボール</h2>
+          <div id="drawn-balls-history"></div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

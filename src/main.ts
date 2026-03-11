@@ -1,24 +1,53 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { initGameState, applyDraw } from './modules/gameState';
+import { renderCard, renderStatus, renderFinished } from './modules/renderer';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+document.addEventListener('DOMContentLoaded', () => {
+  let gameState = initGameState();
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  const drawBallButton = document.getElementById('draw-ball-button') as HTMLButtonElement;
+  const resetButton = document.getElementById('reset-button') as HTMLButtonElement;
+  const lastDrawnElement = document.getElementById('last-drawn') as HTMLSpanElement;
+  const reachCountElement = document.getElementById('reach-count') as HTMLSpanElement;
+  const bingoCountElement = document.getElementById('bingo-count') as HTMLSpanElement;
+  const drawnBallsHistoryElement = document.getElementById('drawn-balls-history') as HTMLDivElement;
+
+  function updateUI() {
+    renderCard(gameState.card, gameState.checkResult.bingoLines);
+    renderStatus(gameState);
+
+    lastDrawnElement.textContent = gameState.lastDrawn !== null ? String(gameState.lastDrawn) : '--';
+    reachCountElement.textContent = String(gameState.checkResult.reachCount);
+    bingoCountElement.textContent = String(gameState.checkResult.bingoCount);
+
+    drawnBallsHistoryElement.innerHTML = '';
+    gameState.drawnBalls.forEach(ball => {
+      const span = document.createElement('span');
+      span.textContent = String(ball);
+      drawnBallsHistoryElement.appendChild(span);
+    });
+
+    if (gameState.isFinished) {
+      drawBallButton.disabled = true;
+      renderFinished();
+    } else {
+      drawBallButton.disabled = false;
+    }
+  }
+
+  drawBallButton.addEventListener('click', () => {
+    if (gameState.remainingBalls.length > 0) {
+      const nextBall = gameState.remainingBalls[0];
+      gameState = applyDraw(gameState, nextBall);
+      updateUI();
+    }
+  });
+
+  resetButton.addEventListener('click', () => {
+    gameState = initGameState();
+    updateUI();
+  });
+
+  // 初期表示
+  updateUI();
+});
