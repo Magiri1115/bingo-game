@@ -99,6 +99,7 @@ h1 {
 .side-panel {
   display: flex;
   flex-direction: column;
+  margin: auto 0;
   gap: 2rem;
 }
 
