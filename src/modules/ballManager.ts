@@ -1,12 +1,14 @@
 /**
- * 1〜75の数字をシャッフルした配列を生成する (Fisher-Yatesアルゴリズム)
- * @returns シャッフルされた数字の配列
+ * 1から75までの数字を含む配列を生成(Fisher-Yatesシャッフル)。
+ * この関数はビンゴゲームで使用するボールの初期状態を作成。
+ * @returns 1から75までの数字がランダムにシャッフルされた配列。
  */
 export function createBalls(): number[] {
   const balls: number[] = Array.from({ length: 75 }, (_, i) => i + 1);
   for (let i = balls.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [balls[i], balls[j]] = [balls[j], balls[i]]; // 要素を交換
+    // 現在の要素とランダムに選ばれた要素を交換し、シャッフルを進行させる
+    [balls[i], balls[j]] = [balls[j], balls[i]];
   }
   return balls;
 }
@@ -18,9 +20,9 @@ export function createBalls(): number[] {
  */
 export function drawBall(remaining: number[]): { ball: number; remaining: number[] } {
   if (remaining.length === 0) {
-    throw new Error('No remaining balls to draw.');
+    throw new Error('引けるボールがありません。');
   }
   const ball = remaining[0];
-  const newRemaining = remaining.slice(1); // 破壊的変更なし
+  const newRemaining = remaining.slice(1);
   return { ball, remaining: newRemaining };
 }
